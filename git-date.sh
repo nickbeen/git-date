@@ -1,20 +1,27 @@
-#!/bin/sh
+#!/usr/bin/env sh
+#
+# Shell script for changing the date of the last local commit.
+#
+# Usage: ./git-date.sh <commitDate>
+#
+# Operands:
+#   <commitDate>    Date in git internal format, RFC 2822 format, ISO 8601 format or human-centric date format.
 
-date="$1"
+commitDate="$1"
 
-if [ -z "$date" ]
+if [ -z "$commitDate" ]
 then
-    echo "Error: date is missing"
+    echo "Error: operand commitDate is required"
     exit 1
 fi
 
-export GIT_AUTHOR_DATE=${date}
-export GIT_COMMITTER_DATE=${date}
+export GIT_AUTHOR_DATE=${commitDate}
+export GIT_COMMITTER_DATE=${commitDate}
 
-if ! git commit --amend --no-edit --date "$date}" > /dev/null 2>&1;
+if ! git commit --amend --no-edit --date "${commitDate}" > /dev/null 2>&1;
 then
-    echo "ERROR: can't make commit"
+    echo "Error: cannot amend the last local commit."
     exit 1
 else
-    git log -1
+    git log --stat -1
 fi
