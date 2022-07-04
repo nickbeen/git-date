@@ -2,6 +2,9 @@
 #
 # Shell script for changing the date of the last local commit.
 #
+# Copyright (C) 2022 Nick Been (https://github.com/nickbeen/git-date)
+# Permission to use, copy, modify and redistribute is granted under the MIT License (MIT).
+#
 # Usage: ./git-date.sh <commitDate>
 #
 # Operands:
